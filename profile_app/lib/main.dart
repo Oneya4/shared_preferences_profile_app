@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:provider/provider.dart';
 
-import 'profile.dart';
+// import 'profile.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final profileData = Provider.of<Profile>(context, listen: false);
+    // final profileData = Provider.of<Profile>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
@@ -40,12 +40,11 @@ class MyHomePage extends StatelessWidget {
           children: [
             CircleAvatar(
               radius: 40,
-              child: Image.asset(
-                
-              ),
+              foregroundImage:
+                  AssetImage('assets/images/black-woman-fashion-photo.jpg'),
             ),
-            Text(profileData.firstName!),
-            Text(profileData.secondName!),
+            Text('Diana'),
+            Text('Nyamai'),
           ],
         ),
       ),
