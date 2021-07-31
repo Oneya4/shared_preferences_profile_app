@@ -9,6 +9,15 @@ class SettingsScreen extends StatefulWidget {
 
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _isChecked = false;
+
+  final ButtonStyle toggleStyle =
+      ElevatedButton.styleFrom(shape: StadiumBorder());
+  // ButtonStyle(
+  //   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+  //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
+  // );
+  //ElevatedButton.styleFrom(shape: StadiumBorder())
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,8 +27,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
       body: Column(
         children: [
           Card(
+            color: Colors.black54,
             child: SwitchListTile(
-                title: Text('App Buttons Rounded'),
+                title: Text(
+                  'App Buttons Rounded',
+                  style: TextStyle(color: Colors.white),
+                ),
                 value: _isChecked,
                 onChanged: (newValue) {
                   setState(() {
@@ -28,22 +41,37 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 }),
           ),
           Card(
-            child: Column(
-              children: [
-                Text('Choose layout'),
-                ButtonBar(
-                  alignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      onPressed: () {},
-                      child: Text('Pic on left'),
-                    ),
-                    ElevatedButton(
-                        onPressed: () {}, child: Text('Pic on right')),
-                    ElevatedButton(onPressed: () {}, child: Text('Pic at top')),
-                  ],
-                )
-              ],
+            color: Colors.black54,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Text(
+                    'Choose layout',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  ButtonBar(
+                    alignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('Pic on left'),
+                        style: _isChecked ? toggleStyle : null,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('Pic on right'),
+                        style: _isChecked ? toggleStyle : null,
+                      ),
+                      ElevatedButton(
+                        onPressed: () {},
+                        child: Text('Pic at top'),
+                        style: _isChecked ? toggleStyle : null,
+                      ),
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ],

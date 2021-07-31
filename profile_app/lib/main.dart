@@ -46,8 +46,8 @@ class MyHomePage extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: CircleAvatar(
                 radius: 80,
-                foregroundImage:
-                    AssetImage('assets/images/black-woman-fashion-photo.jpg'),
+                foregroundImage: NetworkImage(
+                    'https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/06/black-woman-fashion-photo.jpg?w=750'),
               ),
             ),
             Text('Diana'),
