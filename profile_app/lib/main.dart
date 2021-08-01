@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:profile_app/settings_screen.dart';
+import 'package:provider/provider.dart';
 // import 'package:provider/provider.dart';
 
 // import 'profile.dart';
@@ -12,13 +13,20 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Profile App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        Provider<SettingsScreen>(
+          create: (ctx) => SettingsScreen(),
+        )
+      ],
+      child: MaterialApp(
+        title: 'Profile App',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: MyHomePage(),
+        routes: {SettingsScreen.routeName: (ctx) => SettingsScreen()},
       ),
-      home: MyHomePage(),
-      routes: {SettingsScreen.routeName: (ctx) => SettingsScreen()},
     );
   }
 }
@@ -41,14 +49,19 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Card(
         child: Row(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CircleAvatar(
-                radius: 80,
-                foregroundImage: NetworkImage(
-                    'https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/06/black-woman-fashion-photo.jpg?w=750'),
-              ),
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CircleAvatar(
+                    radius: 80,
+                    foregroundImage: NetworkImage(
+                        'https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/06/black-woman-fashion-photo.jpg?w=750'),
+                  ),
+                ),
+              ],
             ),
             Text('Diana'),
             Text('Nyamai'),

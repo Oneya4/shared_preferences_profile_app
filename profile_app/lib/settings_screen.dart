@@ -1,5 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import './profile_settings.dart';
 
 class SettingsScreen extends StatefulWidget {
   static const routeName = '/settings-screen';
@@ -10,8 +13,10 @@ class SettingsScreen extends StatefulWidget {
 class _SettingsScreenState extends State<SettingsScreen> {
   bool _isChecked = false;
 
-  final ButtonStyle toggleStyle =
-      ElevatedButton.styleFrom(shape: StadiumBorder());
+  final ButtonStyle toggleStyle = ElevatedButton.styleFrom(
+    shape: StadiumBorder(),
+    primary: Colors.amber,
+  );
   // ButtonStyle(
   //   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
   //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
@@ -20,6 +25,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final profileData = Provider.of<ProfileSettings>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
