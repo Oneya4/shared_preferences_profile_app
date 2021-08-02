@@ -4,19 +4,9 @@ import 'package:provider/provider.dart';
 
 import './profile_settings.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends StatelessWidget {
   static const routeName = '/settings-screen';
-  @override
-  _SettingsScreenState createState() => _SettingsScreenState();
-}
 
-class _SettingsScreenState extends State<SettingsScreen> {
-  bool _isChecked = false;
-
-  final ButtonStyle toggleStyle = ElevatedButton.styleFrom(
-    shape: StadiumBorder(),
-    primary: Colors.amber,
-  );
   // ButtonStyle(
   //   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
   //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
@@ -25,7 +15,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final ButtonStyle toggleStyle = ElevatedButton.styleFrom(
+      shape: StadiumBorder(),
+      primary: Colors.amber,
+    );
     final profileData = Provider.of<ProfileSettings>(context, listen: false);
+    final _isChecked = profileData.isChecked;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
@@ -39,12 +35,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   'App Buttons Rounded',
                   style: TextStyle(color: Colors.white),
                 ),
-                value: _isChecked,
-                onChanged: (newValue) {
-                  setState(() {
-                    _isChecked = newValue;
-                  });
-                }),
+                value: profileData.isChecked,
+                onChanged: (_) => profileData.toggleShape()),
           ),
           Card(
             color: Colors.black54,
