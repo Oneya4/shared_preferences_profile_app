@@ -30,13 +30,15 @@ class SettingsScreen extends StatelessWidget {
         children: [
           Card(
             color: Colors.black54,
-            child: SwitchListTile(
-                title: Text(
-                  'App Buttons Rounded',
-                  style: TextStyle(color: Colors.white),
-                ),
-                value: profileData.isChecked,
-                onChanged: (_) => profileData.toggleShape()),
+            child: Consumer<ProfileSettings>(
+              builder: (ctx, setting, _) => SwitchListTile(
+                  title: Text(
+                    'App Buttons Rounded',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  value: _isChecked,
+                  onChanged: (_) => setting.toggleShape()),
+            ),
           ),
           Card(
             color: Colors.black54,
