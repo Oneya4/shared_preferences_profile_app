@@ -9,6 +9,9 @@ class SettingsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //Provider is invoked here to manage the state of the application
+    Provider.of<ProfileSettings>(context, listen: false);
+
     final ButtonStyle roundEdges = ElevatedButton.styleFrom(
       shape: StadiumBorder(),
     );
@@ -19,8 +22,6 @@ class SettingsScreen extends StatelessWidget {
     //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
     // );
 
-    //Provider is invoked here to manage the state of the application
-    Provider.of<ProfileSettings>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
@@ -60,18 +61,18 @@ class SettingsScreen extends StatelessWidget {
                       children: <Widget>[
                         ElevatedButton(
                           onPressed: () {},
-                          child: Text('Pic on left'),
+                          child: const Text('Pic on left'),
                           style: setting.isChecked ? roundEdges : null,
                         ),
                         ElevatedButton(
                           onPressed: () {},
-                          child: Text('Pic on right'),
+                          child: const Text('Pic on right'),
                           //Here we listen to changes in the profile settings file to know whether to toggle the style
                           style: setting.isChecked ? roundEdges : null,
                         ),
                         ElevatedButton(
                           onPressed: () {},
-                          child: Text('Pic at top'),
+                          child: const Text('Pic at top'),
                           style: setting.isChecked ? roundEdges : null,
                         ),
                       ],
