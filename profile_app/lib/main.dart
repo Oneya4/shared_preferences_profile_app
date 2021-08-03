@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (ctx) => ProfileSettings(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Profile App',
         theme: ThemeData(
           primarySwatch: Colors.blue,
