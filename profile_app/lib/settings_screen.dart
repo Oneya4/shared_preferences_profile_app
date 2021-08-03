@@ -7,37 +7,40 @@ import './profile_settings.dart';
 class SettingsScreen extends StatelessWidget {
   static const routeName = '/settings-screen';
 
-  // ButtonStyle(
-  //   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-  //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
-  // );
-  //ElevatedButton.styleFrom(shape: StadiumBorder())
-
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle toggleStyle = ElevatedButton.styleFrom(
+    final ButtonStyle roundEdges = ElevatedButton.styleFrom(
       shape: StadiumBorder(),
-      primary: Colors.amber,
     );
-    final profileData = Provider.of<ProfileSettings>(context, listen: false);
-    final _isChecked = profileData.isChecked;
 
+    // Alternative way of initializing ButtonStyle
+    // ButtonStyle(
+    //   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+    //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
+    // );
+
+    //Provider is invoked here to manage the state of the application
+    Provider.of<ProfileSettings>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
       ),
       body: Column(
-        children: [
+        children: <Widget>[
           Card(
             color: Colors.black54,
             child: Consumer<ProfileSettings>(
+              //Consumer() is set up here to listen to 0 1 changes to bool isChecked from the setting file
               builder: (ctx, setting, _) => SwitchListTile(
-                  title: Text(
-                    'App Buttons Rounded',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  value: _isChecked,
-                  onChanged: (_) => setting.toggleShape()),
+                title: Text(
+                  'App Buttons Rounded',
+                  style: TextStyle(color: Colors.white),
+                ),
+                value: setting.isChecked,
+                onChanged: (_) {
+                  setting.toggleState();
+                },
+              ),
             ),
           ),
           Card(
@@ -45,30 +48,34 @@ class SettingsScreen extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
-                children: [
+                children: <Widget>[
                   Text(
                     'Choose layout',
                     style: TextStyle(color: Colors.white),
                   ),
-                  ButtonBar(
-                    alignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text('Pic on left'),
-                        style: _isChecked ? toggleStyle : null,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text('Pic on right'),
-                        style: _isChecked ? toggleStyle : null,
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text('Pic at top'),
-                        style: _isChecked ? toggleStyle : null,
-                      ),
-                    ],
+                  Consumer<ProfileSettings>(
+                    //A Consumer() is set up here so that we only rebuild this part of the tree
+                    builder: (ctx, setting, _) => ButtonBar(
+                      alignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text('Pic on left'),
+                          style: setting.isChecked ? roundEdges : null,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text('Pic on right'),
+                          //Here we listen to changes in the profile settings file to know whether to toggle the style
+                          style: setting.isChecked ? roundEdges : null,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {},
+                          child: Text('Pic at top'),
+                          style: setting.isChecked ? roundEdges : null,
+                        ),
+                      ],
+                    ),
                   )
                 ],
               ),

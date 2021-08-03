@@ -18,9 +18,8 @@ class ProfileSettings with ChangeNotifier {
     notifyListeners();
   }
 
-  void toggleShape() {
-    final newVal = isChecked;
-    isChecked = !isChecked;
+  void toggleState() {
+    final newVal = !isChecked;
     notifyListeners();
     _setChecked(newVal);
   }
