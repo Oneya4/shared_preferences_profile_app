@@ -20,12 +20,34 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: ProfileScreen(),
+        home: Waiting(),
         routes: {
           ProfileScreen.routeName: (ctx) => ProfileScreen(),
           SettingsScreen.routeName: (ctx) => SettingsScreen(),
         },
       ),
     );
+  }
+}
+
+class Waiting extends StatefulWidget {
+  @override
+  _WaitingState createState() => _WaitingState();
+}
+
+class _WaitingState extends State<Waiting> {
+  bool voxt = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+        future: Future.delayed(Duration(seconds: 3)),
+        builder: (c, s) => s.connectionState != ConnectionState.done
+            ? SizedBox(
+                child: Image(image: AssetImage('assets/images/download.jpg')),
+                height: 150,
+                width: 150,
+              )
+            : ProfileScreen());
   }
 }
