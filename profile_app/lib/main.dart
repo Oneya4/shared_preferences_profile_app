@@ -21,9 +21,20 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: Waiting(),
+        home: FutureBuilder(
+            future: Future.delayed(Duration(seconds: 0)),
+            builder: (ctx, s) => s.connectionState != ConnectionState.done
+                ? Container(
+                    color: Colors.white,
+                    child: Center(
+                      child: Image(
+                        image: AssetImage('assets/images/download.jpg'),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  )
+                : ProfileScreen()),
         routes: {
-          ProfileScreen.routeName: (ctx) => ProfileScreen(),
           SettingsScreen.routeName: (ctx) => SettingsScreen(),
         },
       ),
@@ -31,24 +42,26 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Waiting extends StatefulWidget {
-  @override
-  _WaitingState createState() => _WaitingState();
-}
 
-class _WaitingState extends State<Waiting> {
-  bool voxt = false;
+// class Waiting extends StatefulWidget {
+//   @override
+//   _WaitingState createState() => _WaitingState();
+// }
 
-  @override
-  Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: Future.delayed(Duration(seconds: 3)),
-        builder: (c, s) => s.connectionState != ConnectionState.done
-            ? SizedBox(
-                child: Image(image: AssetImage('assets/images/download.jpg')),
-                height: 150,
-                width: 150,
-              )
-            : ProfileScreen());
-  }
-}
+// class _WaitingState extends State<Waiting> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return FutureBuilder(
+//         future: Future.delayed(Duration(seconds: 3)),
+//         builder: (ctx, s) => s.connectionState != ConnectionState.done
+//             ? Container(
+//                 color: Colors.white,
+//                 child: Center(
+//                   child: Image(image: AssetImage('assets/images/download.jpg')),
+//                   heightFactor: 150,
+//                   widthFactor: 150,
+//                 ),
+//               )
+//             : ProfileScreen());
+//   }
+// }

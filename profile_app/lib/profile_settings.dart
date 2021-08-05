@@ -1,5 +1,7 @@
+// import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
-// import 'package:provider/provider.dart';
+// import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileSettings with ChangeNotifier {
   bool isChecked;
