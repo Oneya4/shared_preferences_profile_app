@@ -11,9 +11,9 @@ class ProfileScreen extends StatelessWidget {
     //Set up connection to profile_settings.dart, the state manager
     Provider.of<ProfileSettings>(context, listen: false);
 
-    final ButtonStyle roundEdges = ElevatedButton.styleFrom(
-      shape: StadiumBorder(),
-    );
+    // final ButtonStyle roundEdges = ElevatedButton.styleFrom(
+    //   shape: StadiumBorder(),
+    // );
     final double left = -0.65;
     final double right = 0.65;
     final double ab = 0;
@@ -33,29 +33,31 @@ class ProfileScreen extends StatelessWidget {
         color: Colors.blue,
         child: Column(
           children: [
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Align(
-                  alignment: Alignment(right, ab),
-                  child: const CircleAvatar(
-                    radius: 93,
-                    foregroundImage: NetworkImage(
-                        'https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/06/black-woman-fashion-photo.jpg?w=750'),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment(left, ab),
-                  child: Text(
-                    'Diana \nNyamai',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 30,
-                      fontStyle: FontStyle.italic,
+            Consumer<ProfileSettings>(
+              builder: (ctx, setting, _) => Stack(
+                alignment: Alignment.center,
+                children: [
+                  Align(
+                    alignment: Alignment(right, ab),
+                    child: const CircleAvatar(
+                      radius: 93,
+                      foregroundImage: NetworkImage(
+                          'https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/06/black-woman-fashion-photo.jpg?w=750'),
                     ),
                   ),
-                ),
-              ],
+                  Align(
+                    alignment: Alignment(left, ab),
+                    child: Text(
+                      'Diana \nNyamai',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontStyle: FontStyle.italic,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             SizedBox(height: 20),
             Row(
@@ -68,13 +70,19 @@ class ProfileScreen extends StatelessWidget {
                         onPressed: () {},
                         icon: Icon(Icons.phone),
                         label: Text('Mobile'),
-                        style: setting.isChecked ? roundEdges : null,
+                        style: ElevatedButton.styleFrom(
+                          shape: setting.isChecked ? StadiumBorder() : null,
+                          primary: Colors.purple,
+                        ),
                       ),
                       ElevatedButton.icon(
                         onPressed: () {},
                         icon: Icon(Icons.mail),
                         label: Text('Mail'),
-                        style: setting.isChecked ? roundEdges : null,
+                        style: ElevatedButton.styleFrom(
+                          shape: setting.isChecked ? StadiumBorder() : null,
+                          primary: Colors.purple,
+                        ),
                       )
                     ],
                   ),

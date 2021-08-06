@@ -1,28 +1,52 @@
-// import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileSettings with ChangeNotifier {
   bool isChecked;
+  bool isRight;
+  bool isLeft;
+  bool isTopBottom;
 
   ProfileSettings({
     this.isChecked = false,
+    this.isRight = false,
+    this.isLeft = false,
+    this.isTopBottom = false,
   });
 
-  // void showLogo() {
-  //   Timer(duration, callback) duration = Duration(seconds: 3);
-  //   if(duration> duration.difference)
-  // }
-
-  void _setChecked(bool newValue) {
+  void _switchValue(bool newValue) {
     isChecked = newValue;
     notifyListeners();
   }
 
-  void toggleState() {
+  void toggleSwitchTile() {
     final newVal = !isChecked;
     notifyListeners();
-    _setChecked(newVal);
+    _switchValue(newVal);
+  }
+
+  void _switchPosition(bool newValue, bool off) {
+    isRight = newValue;
+    isLeft = off;
+    isTopBottom = off;
+    notifyListeners();
+  }
+
+  void toRight() {
+    final newVal = !isRight;
+    notifyListeners();
+    _switchPosition(newVal, !newVal);
+  }
+
+  void toLeft() {
+    final newVal = !isLeft;
+    notifyListeners();
+    _switchPosition(newVal, !newVal);
+  }
+
+  void toTopBottom() {
+    final newVal = !isTopBottom;
+    notifyListeners();
+    _switchPosition(newVal, !newVal);
   }
 }

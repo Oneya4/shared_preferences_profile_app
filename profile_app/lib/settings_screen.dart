@@ -16,12 +16,6 @@ class SettingsScreen extends StatelessWidget {
       shape: StadiumBorder(),
     );
 
-    // Alternative way of initializing ButtonStyle
-    // ButtonStyle(
-    //   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-    //       RoundedRectangleBorder(borderRadius: BorderRadius.circular(14))),
-    // );
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
@@ -39,7 +33,7 @@ class SettingsScreen extends StatelessWidget {
                 ),
                 value: setting.isChecked,
                 onChanged: (_) {
-                  setting.toggleState();
+                  setting.toggleSwitchTile();
                 },
               ),
             ),
@@ -60,18 +54,39 @@ class SettingsScreen extends StatelessWidget {
                       alignment: MainAxisAlignment.center,
                       children: <Widget>[
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setting.toLeft();
+                            print(setting.isLeft);
+                            if (setting.isLeft == true) {
+                              ElevatedButton.styleFrom(
+                                  primary: Colors.amberAccent);
+                            }
+                          },
                           child: const Text('Pic on left'),
                           style: setting.isChecked ? roundEdges : null,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setting.toRight();
+                            print(setting.isRight);
+                            if (setting.isLeft == true) {
+                              ElevatedButton.styleFrom(
+                                  primary: Colors.amberAccent);
+                            }
+                          },
                           child: const Text('Pic on right'),
                           //Here we listen to changes in the profile settings file to know whether to toggle the style
                           style: setting.isChecked ? roundEdges : null,
                         ),
                         ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            setting.toTopBottom();
+                            print(setting.isTopBottom);
+                            if (setting.isTopBottom == true) {
+                              ElevatedButton.styleFrom(
+                                  primary: Colors.amberAccent);
+                            }
+                          },
                           child: const Text('Pic at top'),
                           style: setting.isChecked ? roundEdges : null,
                         ),
