@@ -11,9 +11,6 @@ class ProfileScreen extends StatelessWidget {
     //Set up connection to profile_settings.dart, the state manager
     Provider.of<ProfileSettings>(context, listen: false);
 
-    // final ButtonStyle roundEdges = ElevatedButton.styleFrom(
-    //   shape: StadiumBorder(),
-    // );
     final double left = -0.65;
     final double right = 0.65;
     final double ab = 0;
@@ -25,7 +22,7 @@ class ProfileScreen extends StatelessWidget {
           IconButton(
             onPressed: () =>
                 Navigator.of(context).pushNamed(SettingsScreen.routeName),
-            icon: Icon(Icons.settings),
+            icon: const Icon(Icons.settings),
           )
         ],
       ),
@@ -59,7 +56,7 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -68,8 +65,8 @@ class ProfileScreen extends StatelessWidget {
                     children: <Widget>[
                       ElevatedButton.icon(
                         onPressed: () {},
-                        icon: Icon(Icons.phone),
-                        label: Text('Mobile'),
+                        icon: const Icon(Icons.phone),
+                        label: const Text('Mobile'),
                         style: ElevatedButton.styleFrom(
                           shape: setting.isChecked ? StadiumBorder() : null,
                           primary: Colors.purple,
@@ -77,8 +74,8 @@ class ProfileScreen extends StatelessWidget {
                       ),
                       ElevatedButton.icon(
                         onPressed: () {},
-                        icon: Icon(Icons.mail),
-                        label: Text('Mail'),
+                        icon: const Icon(Icons.mail),
+                        label: const Text('Mail'),
                         style: ElevatedButton.styleFrom(
                           shape: setting.isChecked ? StadiumBorder() : null,
                           primary: Colors.purple,
