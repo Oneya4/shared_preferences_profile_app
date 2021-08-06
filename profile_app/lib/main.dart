@@ -41,27 +41,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
-// class Waiting extends StatefulWidget {
-//   @override
-//   _WaitingState createState() => _WaitingState();
-// }
-
-// class _WaitingState extends State<Waiting> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return FutureBuilder(
-//         future: Future.delayed(Duration(seconds: 3)),
-//         builder: (ctx, s) => s.connectionState != ConnectionState.done
-//             ? Container(
-//                 color: Colors.white,
-//                 child: Center(
-//                   child: Image(image: AssetImage('assets/images/download.jpg')),
-//                   heightFactor: 150,
-//                   widthFactor: 150,
-//                 ),
-//               )
-//             : ProfileScreen());
-//   }
-// }
