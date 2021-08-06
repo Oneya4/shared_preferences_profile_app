@@ -10,10 +10,10 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     //Set up connection to profile_settings.dart, the state manager
     Provider.of<ProfileSettings>(context, listen: false);
+    final Alignment left = Alignment(0.65, 0);
+    final Alignment right = Alignment(-0.65, 0);
+    final Alignment topBottom = Alignment(-0.65, 0);
 
-    final double left = -0.65;
-    final double right = 0.65;
-    final double ab = 0;
     return Scaffold(
       backgroundColor: Colors.blue,
       appBar: AppBar(
@@ -35,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 children: [
                   Align(
-                    alignment: Alignment(right, ab),
+                    alignment: setting.isRight ? left : right,
                     child: const CircleAvatar(
                       radius: 93,
                       foregroundImage: NetworkImage(
@@ -43,7 +43,7 @@ class ProfileScreen extends StatelessWidget {
                     ),
                   ),
                   Align(
-                    alignment: Alignment(left, ab),
+                    alignment: setting.isRight ? right : left,
                     child: Text(
                       'Diana \nNyamai',
                       style: TextStyle(
