@@ -10,6 +10,19 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     //Set up connection to profile_settings.dart, the state manager
     Provider.of<ProfileSettings>(context, listen: false);
+    final avatar = const CircleAvatar(
+      radius: 93,
+      foregroundImage: NetworkImage(
+          'https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/06/black-woman-fashion-photo.jpg?w=750'),
+    );
+    final text = const Text(
+      'Robyn \nFenty',
+      style: TextStyle(
+        color: Colors.white,
+        fontSize: 30,
+        fontStyle: FontStyle.italic,
+      ),
+    );
 
     return Scaffold(
       backgroundColor: Colors.blue,
@@ -28,31 +41,16 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             Consumer<ProfileSettings>(
-              builder: (ctx, setting, _) => Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    textDirection:
-                        setting.isRight ? TextDirection.rtl : TextDirection.ltr,
-                    children: [
-                      const CircleAvatar(
-                        radius: 93,
-                        foregroundImage: NetworkImage(
-                            'https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/06/black-woman-fashion-photo.jpg?w=750'),
-                      ),
-                      Text(
-                        'Robyn \nFenty',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 30,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
+                builder: (ctx, setting, _) => setting.isTopBottom
+                    ? Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [avatar, text])
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        textDirection: setting.isRight
+                            ? TextDirection.rtl
+                            : TextDirection.ltr,
+                        children: [avatar, text])),
             const SizedBox(height: 20),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,

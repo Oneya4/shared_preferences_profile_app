@@ -72,10 +72,12 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         ElevatedButton(
                           child: const Text('Pic at top'),
-                          onPressed: () {},
+                          onPressed: () {
+                            setting.switchPosition('topBottom');
+                          },
                           style: ElevatedButton.styleFrom(
                             shape: setting.isChecked ? StadiumBorder() : null,
-                            // primary: setting.isTopBottom ? Colors.amber : null,
+                            primary: setting.isTopBottom ? Colors.amber : null,
                           ),
                         ),
                       ],

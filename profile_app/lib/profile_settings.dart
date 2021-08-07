@@ -28,19 +28,28 @@ class ProfileSettings with ChangeNotifier {
   void switchPosition(String position) {
     if (position == 'left') {
       isLeft = true;
-      isRight = !isRight;
-      isTopBottom = !isTopBottom;
+      isRight = false;
+      isTopBottom = false;
       notifyListeners();
     } else if (position == 'right') {
       isRight = true;
-      isLeft = !isLeft;
-      isTopBottom = !isTopBottom;
+      isLeft = false;
+      isTopBottom = false;
       notifyListeners();
     } else if (position == 'topBottom') {
       isTopBottom = true;
-      isLeft = !isLeft;
-      isRight = !isRight;
+      isRight = false;
+      isLeft = false;
       notifyListeners();
     }
   }
+
+  // void widgetOrientation(String orientation) {
+  //   if (orientation == 'topBottom') {
+  //     isTopBottom = true;
+  //     isRight = false;
+  //     isLeft = false;
+  //     notifyListeners();
+  //   }
+  // }
 }
