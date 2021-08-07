@@ -10,9 +10,6 @@ class ProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     //Set up connection to profile_settings.dart, the state manager
     Provider.of<ProfileSettings>(context, listen: false);
-    final Alignment left = Alignment(0.65, 0);
-    final Alignment right = Alignment(-0.65, 0);
-    final Alignment topBottom = Alignment(-0.65, 0);
 
     return Scaffold(
       backgroundColor: Colors.blue,
@@ -31,27 +28,27 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           children: [
             Consumer<ProfileSettings>(
-              builder: (ctx, setting, _) => Stack(
-                alignment: Alignment.center,
+              builder: (ctx, setting, _) => Column(
                 children: [
-                  Align(
-                    alignment: setting.isRight ? left : right,
-                    child: const CircleAvatar(
-                      radius: 93,
-                      foregroundImage: NetworkImage(
-                          'https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/06/black-woman-fashion-photo.jpg?w=750'),
-                    ),
-                  ),
-                  Align(
-                    alignment: setting.isRight ? right : left,
-                    child: Text(
-                      'Diana \nNyamai',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 30,
-                        fontStyle: FontStyle.italic,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    textDirection:
+                        setting.isRight ? TextDirection.rtl : TextDirection.ltr,
+                    children: [
+                      const CircleAvatar(
+                        radius: 93,
+                        foregroundImage: NetworkImage(
+                            'https://www.shutterstock.com/blog/wp-content/uploads/sites/5/2020/06/black-woman-fashion-photo.jpg?w=750'),
                       ),
-                    ),
+                      Text(
+                        'Robyn \nFenty',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 30,
+                          fontStyle: FontStyle.italic,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),

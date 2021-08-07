@@ -22,15 +22,12 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: FutureBuilder(
-            future: Future.delayed(Duration(seconds: 0)),
+            future: Future.delayed(Duration(seconds: 2)),
             builder: (ctx, s) => s.connectionState != ConnectionState.done
                 ? Container(
                     color: Colors.white,
-                    child: Center(
-                      child: Image(
-                        image: AssetImage('assets/images/download.jpg'),
-                        fit: BoxFit.cover,
-                      ),
+                    child: Image(
+                      image: AssetImage('assets/images/download.png'),
                     ),
                   )
                 : ProfileScreen()),

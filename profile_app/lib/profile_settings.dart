@@ -9,8 +9,8 @@ class ProfileSettings with ChangeNotifier {
 
   ProfileSettings({
     this.isChecked = false,
-    this.isRight = false,
     this.isLeft = false,
+    this.isRight = false,
     this.isTopBottom = false,
   });
 
@@ -25,28 +25,22 @@ class ProfileSettings with ChangeNotifier {
     _switchValue(newVal);
   }
 
-  void _switchPosition(bool newValue, bool off) {
-    isRight = newValue;
-    isLeft = off;
-    isTopBottom = off;
-    notifyListeners();
-  }
-
-  void toRight() {
-    final newVal = !isRight;
-    notifyListeners();
-    _switchPosition(newVal, !newVal);
-  }
-
-  void toLeft() {
-    final newVal = !isLeft;
-    notifyListeners();
-    _switchPosition(newVal, !newVal);
-  }
-
-  void toTopBottom() {
-    final newVal = !isTopBottom;
-    notifyListeners();
-    _switchPosition(newVal, !newVal);
+  void switchPosition(String position) {
+    if (position == 'left') {
+      isLeft = true;
+      isRight = !isRight;
+      isTopBottom = !isTopBottom;
+      notifyListeners();
+    } else if (position == 'right') {
+      isRight = true;
+      isLeft = !isLeft;
+      isTopBottom = !isTopBottom;
+      notifyListeners();
+    } else if (position == 'topBottom') {
+      isTopBottom = true;
+      isLeft = !isLeft;
+      isRight = !isRight;
+      notifyListeners();
+    }
   }
 }

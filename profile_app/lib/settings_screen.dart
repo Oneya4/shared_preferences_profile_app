@@ -52,8 +52,7 @@ class SettingsScreen extends StatelessWidget {
                         ElevatedButton(
                           child: const Text('Pic on left'),
                           onPressed: () {
-                            setting.toLeft();
-                            print(setting.isLeft);
+                            setting.switchPosition('left');
                           },
                           style: ElevatedButton.styleFrom(
                             shape: setting.isChecked ? StadiumBorder() : null,
@@ -63,8 +62,7 @@ class SettingsScreen extends StatelessWidget {
                         ElevatedButton(
                           child: const Text('Pic on right'),
                           onPressed: () {
-                            setting.toRight();
-                            print(setting.isRight);
+                            setting.switchPosition('right');
                           },
                           //Here we listen to changes in the profile settings file to know whether to toggle the style
                           style: ElevatedButton.styleFrom(
@@ -74,13 +72,10 @@ class SettingsScreen extends StatelessWidget {
                         ),
                         ElevatedButton(
                           child: const Text('Pic at top'),
-                          onPressed: () {
-                            setting.toTopBottom();
-                            print(setting.isTopBottom);
-                          },
+                          onPressed: () {},
                           style: ElevatedButton.styleFrom(
                             shape: setting.isChecked ? StadiumBorder() : null,
-                            primary: setting.isTopBottom ? Colors.amber : null,
+                            // primary: setting.isTopBottom ? Colors.amber : null,
                           ),
                         ),
                       ],
