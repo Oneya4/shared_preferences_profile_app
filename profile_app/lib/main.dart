@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
         ),
         home: FutureBuilder(
-            future: Future.delayed(Duration(seconds: 2)),
+            future: Future.delayed(Duration(seconds: 3)),
             builder: (ctx, s) => s.connectionState != ConnectionState.done
                 ? Container(
                     color: Colors.white,

@@ -1,55 +1,65 @@
 import 'package:flutter/cupertino.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileSettings with ChangeNotifier {
-  bool isChecked;
-  bool isRight;
-  bool isLeft;
-  bool isTopBottom;
+  bool isChecked = false;
+  bool isRight = false;
+  bool isLeft = true;
+  bool isTopBottom = false;
+  SharedPreferences? _prefs;
 
-  ProfileSettings({
-    this.isChecked = false,
-    this.isLeft = false,
-    this.isRight = false,
-    this.isTopBottom = false,
-  });
-
-  void _switchValue(bool newValue) {
-    isChecked = newValue;
-    notifyListeners();
+  ProfileSettings() {
+    _restoreSettings();
   }
 
-  void toggleSwitchTile() {
-    final newVal = !isChecked;
-    notifyListeners();
-    _switchValue(newVal);
-  }
-
-  void switchPosition(String position) {
-    if (position == 'left') {
-      isLeft = true;
-      isRight = false;
-      isTopBottom = false;
-      notifyListeners();
-    } else if (position == 'right') {
-      isRight = true;
-      isLeft = false;
-      isTopBottom = false;
-      notifyListeners();
-    } else if (position == 'topBottom') {
-      isTopBottom = true;
-      isRight = false;
-      isLeft = false;
-      notifyListeners();
+  _initPrefs() async {
+    if (_prefs == null) {
+      _prefs = await SharedPreferences.getInstance();
     }
   }
 
-  // void widgetOrientation(String orientation) {
-  //   if (orientation == 'topBottom') {
-  //     isTopBottom = true;
-  //     isRight = false;
-  //     isLeft = false;
-  //     notifyListeners();
-  //   }
-  // }
+  _restoreSettings() async {
+    await _initPrefs();
+    isChecked = _prefs?.getBool('isChecked') ?? false;
+    isLeft = _prefs?.getBool('isLeft') ?? true;
+    isRight = _prefs?.getBool('isRight') ?? false;
+    isTopBottom = _prefs?.getBool('isTopBottom') ?? false;
+    notifyListeners();
+  }
+
+  _saveSettings() async {
+    await _initPrefs();
+    _prefs?.setBool('isChecked', isChecked);
+    _prefs?.setBool('isLeft', isLeft);
+    _prefs?.setBool('isRight', isRight);
+    _prefs?.setBool('isTopBottom', isTopBottom);
+  }
+
+  toggleSwitchTile() async {
+    isChecked = !isChecked;
+    _saveSettings();
+    notifyListeners();
+  }
+
+  switchPosition(String position) async {
+    if (position == 'left') {
+      isLeft = !isLeft;
+      isRight = false;
+      isTopBottom = false;
+      _saveSettings();
+      notifyListeners();
+    } else if (position == 'right') {
+      isRight = !isRight;
+      isLeft = false;
+      isTopBottom = false;
+      _saveSettings();
+      notifyListeners();
+    } else if (position == 'topBottom') {
+      isTopBottom = !isTopBottom;
+      isRight = false;
+      isLeft = false;
+      _saveSettings();
+      notifyListeners();
+    }
+  }
 }
