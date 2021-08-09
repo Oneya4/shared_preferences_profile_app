@@ -8,6 +8,7 @@ class ProfileSettings with ChangeNotifier {
   bool isTopBottom = false;
   SharedPreferences? _prefs;
 
+  //The provider class is initialize at its creation with a call to _restoreSettings() to check for saved values before current processing begins
   ProfileSettings() {
     _restoreSettings();
   }
@@ -35,12 +36,14 @@ class ProfileSettings with ChangeNotifier {
     _prefs?.setBool('isTopBottom', isTopBottom);
   }
 
+//function to toggle SwitchTile()
   toggleSwitchTile() async {
     isChecked = !isChecked;
     _saveSettings();
     notifyListeners();
   }
 
+//notifylisteners has to be called after every check to ensure the other values are set to false when one is true.(looking for a better implementation)
   switchPosition(String position) async {
     if (position == 'left') {
       isLeft = !isLeft;
