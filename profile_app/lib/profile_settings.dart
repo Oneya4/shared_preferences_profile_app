@@ -7,6 +7,7 @@ class ProfileSettings with ChangeNotifier {
   bool isLeft = true;
   bool isTopBottom = false;
   SharedPreferences? _prefs;
+  //SharedPreferences is a nullable type in versions ^2.0.5
 
   //The provider class is initialize at its creation with a call to _restoreSettings() to check for saved values before current processing begins
   ProfileSettings() {
