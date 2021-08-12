@@ -6,6 +6,7 @@ class ProfileSettings with ChangeNotifier {
   bool isRight = false;
   bool isLeft = true;
   bool isTopBottom = false;
+  bool loading = false;
   SharedPreferences? _prefs;
   //SharedPreferences is a nullable type in versions ^2.0.5
 
@@ -65,5 +66,11 @@ class ProfileSettings with ChangeNotifier {
       _saveSettings();
       notifyListeners();
     }
+  }
+
+  void isLoading() async {
+    await Future.delayed(Duration(seconds: 3));
+    loading = true;
+    notifyListeners();
   }
 }
